@@ -1,4 +1,13 @@
 <?php
 require_once 'Compte.php';
 
-$tomas = new Compte('Thomas UZAN', 1000);
+$thomas = new Compte(titulaire: 'Thomas UZAN',  solde: 1000);
+$joana = new Compte('Joana', 200);
+
+$joana->retirer(100);
+$joana->deposer(150);
+
+$thomas->virer($joana, 900);
+
+echo '<pre>';
+var_dump($thomas, $joana);

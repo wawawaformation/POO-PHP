@@ -36,10 +36,50 @@ class Compte{
     {
         $this->setNom($titulaire);
         $this->setSolde($solde);
-      
     }
 
 
+    /**
+     * REtire de l'argent
+     * @param int $somme somme à retirer
+     * @throws Exception
+     * @return void
+     */
+    public function retirer(int $somme)
+    {
+        if($somme > $this->solde){
+            throw new Exception('Vous n\'avez pas assez d\'argent');
+        }
+        $this->solde -= $somme;
+    }
+
+
+    /**
+     * Dépose de l'argent
+     * @param int $somme somme à déposer
+     * @throws \Exception
+     * @return void
+     */
+    public function deposer(int $somme)
+    {
+        if($somme <= 0){
+            throw new Exception('Un depot est toujours positif');
+        }
+        $this->solde += $somme;
+    }
+
+
+    /**
+     * Virer de l'argent sur un autre compte
+     * @param Compte $compte compte le lequel s'effecture le virement
+     * @param float $somme somme virer
+     * @return void
+     */
+    public function virer(Compte $compte, float $somme)
+    {
+        $this->retirer($somme);
+        $compte->deposer($somme);
+    }
 
     /**
      * retourne le nom du titualire
