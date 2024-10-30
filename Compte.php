@@ -5,6 +5,10 @@
  * Représente un compte en banque
  */
 class Compte{
+
+    static $compteur = 0;
+
+
     /**
      * Nom du titualire
      * @var string
@@ -36,8 +40,15 @@ class Compte{
     {
         $this->setNom($titulaire);
         $this->setSolde($solde);
+        self::$compteur++;
+       
     }
 
+
+    static public function getCompteur()
+    {
+        return self::$compteur;
+    }
 
     /**
      * REtire de l'argent
